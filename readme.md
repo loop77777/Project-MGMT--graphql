@@ -109,3 +109,28 @@
 ### Add Project
 
 `it will make a project with project name , project status(not-started, in-progress or completed) and the client`
+
+## Deployment
+
+### Backend on Render
+
+1. Push this repository to GitHub.
+2. In Render, create a new **Blueprint** from the repository, or create a **Web Service** manually.
+3. Use these settings:
+   - Root directory: repository root
+   - Build command: `npm install`
+   - Start command: `npm start`
+4. Add this environment variable in Render:
+   - `MONGO_URI`: your MongoDB connection string
+5. After deploy, copy the Render backend URL and add `/graphql` at the end.
+
+### Frontend on Netlify
+
+1. In Netlify, import the same GitHub repository.
+2. Netlify will read `netlify.toml`; use these settings if entering them manually:
+   - Base directory: `client`
+   - Build command: `npm run build`
+   - Publish directory: `client/build`
+3. Add this environment variable in Netlify:
+   - `REACT_APP_GRAPHQL_URL`: `https://your-render-service.onrender.com/graphql`
+4. Redeploy the Netlify site after setting the environment variable.
